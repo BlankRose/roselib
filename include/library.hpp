@@ -1,6 +1,3 @@
-#ifndef ROSELIB_LIBRARY_H
-#define ROSELIB_LIBRARY_H
+#pragma once
 
 void hello();
-
-#endif //ROSELIB_LIBRARY_H

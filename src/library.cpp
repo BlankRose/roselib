@@ -1,5 +1,4 @@
 #include "library.hpp"
-
 #include <iostream>
 
 void hello()
