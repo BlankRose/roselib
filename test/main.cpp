@@ -1,6 +1,9 @@
-#include "library.hpp"
+#include "roselib/predicates.hpp"
+#include <iostream>
+
+void test_begin_with();
 
 int main()
 {
-    hello();
+    test_begin_with();
 }

@@ -14,9 +14,15 @@ option(ROSELIB_BUILD_TEST "Should the test executable be built?" ON)
 #      PROJECT SOURCES       #
 # ########################## #
 
-set(LIB_HEADERS include/library.hpp)
-set(LIB_SOURCES src/library.cpp)
-set(TEST_SOURCES test/main.cpp)
+set(LIB_HEADERS
+        include/roselib/impl/roselib_core.hpp
+        include/roselib/impl/predicates.tpp
+        include/roselib/predicates.hpp)
+set(LIB_SOURCES
+        src/predicates.cpp)
+set(TEST_SOURCES
+        test/main.cpp
+        test/predicates.cpp)
 
 # ########################## #
 #        COMPILATION         #
