@@ -1,16 +1,13 @@
 /* ************************************************************************** */
 /*         .-.                                                                */
 /*   __   /   \   __                                                          */
-/*  (  `'.\   /.'`  )  roselib_core.hpp                                       */
+/*  (  `'.\   /.'`  )  UnitTester.cpp                                         */
 /*   '-._.(;;;)._.-'                                                          */
 /*   .-'  ,`"`,  '-.                                                          */
 /*  (__.-'/   \'-.__)  By: Rosie (https://github.com/BlankRose)               */
-/*      //\   /        Last Updated: March 19, 2024 [03:57 pm]                */
+/*      //\   /        Last Updated: March 20, 2024 [06:23 pm]                */
 /*     ||  '-'                                                                */
 /* ************************************************************************** */
 
-#pragma once
-
-#define ROSELIB_NAMESPACE   rose
-#define ROSELIB_BEGIN       namespace ROSELIB_NAMESPACE {
-#define ROSELIB_END         }
+#include "roselib/UnitTester.hpp"
+using namespace rose;

@@ -1,3 +1,14 @@
+# ############################################################################ #
+#          .-.                                                                 #
+#    __   /   \   __                                                           #
+#   (  `'.\   /.'`  )  CMakeLists.txt                                          #
+#    '-._.(;;;)._.-'                                                           #
+#    .-'  ,`"`,  '-.                                                           #
+#   (__.-'/   \'-.__)  By: Rosie (https://github.com/BlankRose)                #
+#       //\   /        Last Updated: March 20, 2024 [06:14 pm]                 #
+#      ||  '-'                                                                 #
+# ############################################################################ #
+
 cmake_minimum_required(VERSION 3.28)
 
 project(roselib
@@ -15,14 +26,15 @@ option(ROSELIB_BUILD_TEST "Should the test executable be built?" ON)
 # ########################## #
 
 set(LIB_HEADERS
-        include/roselib/impl/roselib_core.hpp
         include/roselib/impl/predicates.tpp
-        include/roselib/predicates.hpp)
+        include/roselib/Predicates/begin_with.hpp
+        include/roselib/Predicates.hpp
+        include/roselib/UnitTester.hpp)
 set(LIB_SOURCES
-        src/predicates.cpp)
+        src/UnitTester.cpp)
 set(TEST_SOURCES
         test/main.cpp
-        test/predicates.cpp)
+        test/begin_with.cpp)
 
 # ########################## #
 #        COMPILATION         #

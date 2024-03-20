@@ -1,17 +1,14 @@
 /* ************************************************************************** */
 /*         .-.                                                                */
 /*   __   /   \   __                                                          */
-/*  (  `'.\   /.'`  )  main.cpp                                               */
+/*  (  `'.\   /.'`  )  Predicates.hpp                                         */
 /*   '-._.(;;;)._.-'                                                          */
 /*   .-'  ,`"`,  '-.                                                          */
 /*  (__.-'/   \'-.__)  By: Rosie (https://github.com/BlankRose)               */
-/*      //\   /        Last Updated: March 20, 2024 [06:11 pm]                */
+/*      //\   /        Last Updated: March 20, 2024 [06:08 pm]                */
 /*     ||  '-'                                                                */
 /* ************************************************************************** */
 
-void test_begin_with();
+#pragma once
 
-int main()
-{
-    test_begin_with();
-}
+#include "Predicates/begin_with.hpp"
