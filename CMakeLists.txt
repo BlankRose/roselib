@@ -29,6 +29,11 @@ set(LIB_HEADERS
         include/roselib/impl/predicates.tpp
         include/roselib/Predicates/begin_with.hpp
         include/roselib/Predicates.hpp
+        include/roselib/impl/UnitTesterFunction.tpp
+        include/roselib/UnitTester/utils.hpp
+        include/roselib/UnitTester/UnitTesterBase.hpp
+        include/roselib/UnitTester/UnitTesterFunction.hpp
+        include/roselib/UnitTester/UnitTesterObject.hpp
         include/roselib/UnitTester.hpp)
 set(LIB_SOURCES
         src/UnitTester.cpp)

@@ -10,29 +10,12 @@
 /* ************************************************************************** */
 
 #pragma once
-#include <cstddef>
+
 #include <functional>
+#include "UnitTester/UnitTesterBase.hpp"
 
 namespace rose
 {
-    /// @brief      Enumeration of tested features,
-    ///             mostly used by @class UnitTester
-    enum class UnitTesterType
-    {
-        UNKNOWN,
-        FUNCTION,
-        OBJECT,
-    };
-
-    /// @brief      Structions which keep track of various informations
-    ///             about an on-going test
-    struct UnitTesterResult
-    {
-        size_t        total   = 0;
-        size_t        success = 0;
-        size_t        fails   = 0;
-    };
-
     /// @brief      Provides an easy interface for unit testing various
     ///             functions, classes and other various features
     template < class Signature >
