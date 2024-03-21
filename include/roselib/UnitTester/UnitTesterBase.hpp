@@ -5,7 +5,7 @@
 /*   '-._.(;;;)._.-'                                                          */
 /*   .-'  ,`"`,  '-.                                                          */
 /*  (__.-'/   \'-.__)  By: Rosie (https://github.com/BlankRose)               */
-/*      //\   /        Last Updated: March 21, 2024 [11:22 am]                */
+/*      //\   /        Last Updated: March 21, 2024 [07:32 pm]                */
 /*     ||  '-'                                                                */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ namespace rose
     {
     public:
         using Type          = UnitTesterType;
+        using Outcome       = UnitTesterOutcome;
         using result_type   = UnitTesterResult;
+        using callback_type = UnitTesterCallback;
 
         /// @brief          Default base constructor (DISABLED)
         UnitTesterBase() = delete;
@@ -70,14 +72,33 @@ namespace rose
         /// @return         Enum value (@class UnitTesterType)
         [[nodiscard]] const Type& get_type() const noexcept;
 
-        void add_fail() noexcept;
-        void add_fail(const size_t &count) noexcept;
+        /// @brief          Retrieves the used callback, called whenever
+        ///                 a test is performed
+        ///
+        /// @return         Pointer to callback function (@class UnitTesterCallback)
+        [[nodiscard]] const callback_type& get_callback() const noexcept;
 
-        void add_success() noexcept;
-        void add_success(const size_t &count) noexcept;
+        /// @brief          Define the callback function, called whenever
+        ///                 a test is performed
+        ///
+        /// @param callback Pointer to callback function (@class UnitTesterCallback)
+        void set_callback(const callback_type &callback) noexcept;
+
+        /// @brief          Manually adds fails to the counter
+        /// @param count    Amount of fails
+        void add_fail(const ssize_t &count = 1) noexcept;
+
+        /// @brief          Manually adds success to the counter
+        /// @param count    Amount of success
+        void add_success(const ssize_t &count = 1) noexcept;
+
+        /// @brief          Manually adds a new result to the counter
+        /// @param result   New result
+        void add_result(const bool &result) noexcept;
 
     protected:
         result_type         _result;
         Type                _type;
+        callback_type       _callback;
     };
 }

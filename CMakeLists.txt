@@ -5,7 +5,7 @@
 #    '-._.(;;;)._.-'                                                           #
 #    .-'  ,`"`,  '-.                                                           #
 #   (__.-'/   \'-.__)  By: Rosie (https://github.com/BlankRose)                #
-#       //\   /        Last Updated: March 20, 2024 [06:14 pm]                 #
+#       //\   /        Last Updated: March 21, 2024 [07:29 pm]                 #
 #      ||  '-'                                                                 #
 # ############################################################################ #
 
@@ -36,7 +36,7 @@ set(LIB_HEADERS
         include/roselib/UnitTester/UnitTesterObject.hpp
         include/roselib/UnitTester.hpp)
 set(LIB_SOURCES
-        src/UnitTester.cpp)
+        src/UnitTesterBase.cpp)
 set(TEST_SOURCES
         test/main.cpp
         test/begin_with.cpp)

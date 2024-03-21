@@ -10,7 +10,7 @@
 /* ************************************************************************** */
 
 #pragma once
-#include <cstddef>
+#include <sys/types.h>
 
 namespace rose
 {
@@ -18,9 +18,19 @@ namespace rose
     ///             mostly used by @class UnitTester
     enum class UnitTesterType
     {
-        UNKNOWN,                        // Test case is unknown
-        FUNCTION,                       // Test case is callable
-        OBJECT,                         // Test case is an object
+        UNKNOWN,                    // Test case is unknown
+        FUNCTION,                   // Test case is callable
+        OBJECT,                     // Test case is an object
+    };
+
+    /// @brief      Enumeration of the possible outcomes
+    ///             for the tested features
+    enum class UnitTesterOutcome
+    {
+        SUCCESS,                    // Test passed
+        FAIL_DIFFERENCE,            // Test failed because the returned value(s) were different than expected
+        FAIL_NO_THROW,              // Test failed because no exception was thrown in an exception test
+        FAIL_THROW,                 // Test failed because an exception was thrown in a non-exception test
     };
 
     /// @brief      Structions which keep track of various informations
@@ -38,9 +48,11 @@ namespace rose
         UnitTesterResult(const size_t &success, const size_t &fails, const size_t &last):
             total(success + fails), success(success), fails(fails), last(last) {}
 
-        size_t        total   = 0;      // Amount of test completed
-        size_t        success = 0;      // Amount of test which returned the expected value(s)
-        size_t        fails   = 0;      // Amount of test which didn't return the expected value(s)
-        bool          last    = true;   // Last test's result (TRUE = Success, FALSE = Failure)
+        size_t      total   = 0;    // Amount of test completed
+        size_t      success = 0;    // Amount of test which returned the expected value(s)
+        size_t      fails   = 0;    // Amount of test which didn't return the expected value(s)
+        bool        last    = true; // Last test's result (TRUE = Success, FALSE = Failure)
     };
+
+    using UnitTesterCallback = void(*)(const UnitTesterOutcome &);
 }

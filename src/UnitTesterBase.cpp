@@ -1,11 +1,11 @@
 /* ************************************************************************** */
 /*         .-.                                                                */
 /*   __   /   \   __                                                          */
-/*  (  `'.\   /.'`  )  UnitTester.cpp                                         */
+/*  (  `'.\   /.'`  )  UnitTesterBase.cpp                                     */
 /*   '-._.(;;;)._.-'                                                          */
 /*   .-'  ,`"`,  '-.                                                          */
 /*  (__.-'/   \'-.__)  By: Rosie (https://github.com/BlankRose)               */
-/*      //\   /        Last Updated: March 20, 2024 [06:23 pm]                */
+/*      //\   /        Last Updated: March 21, 2024 [07:29 pm]                */
 /*     ||  '-'                                                                */
 /* ************************************************************************** */
 
@@ -13,7 +13,11 @@
 using namespace rose;
 
 UnitTesterBase::UnitTesterBase(const Type &type, const bool &last) noexcept:
-    _result(0, 0, last), _type(type)
+    _result(0, 0, last), _type(type), _callback(nullptr)
+{}
+
+UnitTesterBase::UnitTesterBase(const Type &type, const size_t &success, const size_t &fails, const bool &last) noexcept:
+    _result(success, fails, last), _type(type), _callback(nullptr)
 {}
 
 UnitTesterBase &UnitTesterBase::operator=(const UnitTesterBase &rhs) noexcept
@@ -23,6 +27,7 @@ UnitTesterBase &UnitTesterBase::operator=(const UnitTesterBase &rhs) noexcept
     this->_result.total   = rhs._result.total;
     this->_result.success = rhs._result.success;
     this->_result.fails   = rhs._result.fails;
+    this->_callback       = rhs._callback;
     return *this;
 }
 
@@ -41,9 +46,43 @@ const UnitTesterBase::Type &UnitTesterBase::get_type() const noexcept
     return this->_type;
 }
 
+const UnitTesterBase::callback_type &UnitTesterBase::get_callback() const noexcept
+{
+    return this->_callback;
+}
+
+void UnitTesterBase::set_callback(const callback_type &callback) noexcept
+{
+    this->_callback = callback;
+}
+
 void UnitTesterBase::clear_result() noexcept
 {
     this->_result.total = 0;
     this->_result.success = 0;
     this->_result.fails = 0;
+}
+
+void UnitTesterBase::add_fail(const ssize_t &count) noexcept
+{
+    this->_result.fails += count;
+    this->_result.total += count;
+    this->_result.last = false;
+}
+
+void UnitTesterBase::add_success(const ssize_t &count) noexcept
+{
+    this->_result.success += count;
+    this->_result.total += count;
+    this->_result.last = true;
+}
+
+void UnitTesterBase::add_result(const bool &result) noexcept
+{
+    if (result)
+        ++this->_result.success;
+    else
+        ++this->_result.fails;
+    ++this->_result.total;
+    this->_result.last = result;
 }
