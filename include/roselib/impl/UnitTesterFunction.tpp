@@ -28,11 +28,95 @@ namespace rose
     }
 
     template < class Return, class... Args >
-    bool IUnitTesterFunction::run_test
+    const bool &IUnitTesterFunction::run_test
         (output_type expected, input_type args)
     {
-        const output_type output = this->operator()(std::forward<Args>(args)...);
+        bool result;
+        bool exception;
+        try
+        {
+            const output_type output = this->operator()(std::forward<Args>(args)...);
+            result = expected == output;
+            exception = false;
+        }
+        catch (...)
+        {
+            result = false;
+            exception = true;
+        }
+
+        add_result(result);
+        if (this->_callback)
+        {
+            if (result)
+                this->_callback(UnitTesterOutcome::SUCCESS);
+            else if (exception)
+                this->_callback(UnitTesterOutcome::FAIL_THROW);
+            else
+                this->_callback(UnitTesterOutcome::FAIL_DIFFERENCE);
+        }
         return get_last_result();
     }
+
+    template < class Return, class... Args >
+    template < class Exception >
+    const bool &
+        IUnitTesterFunction::run_exception_test(input_type args)
+    {
+        bool result = false;
+        bool exception;
+        try
+        {
+            const output_type output = this->operator()(std::forward<Args>(args)...);
+            exception = false;
+        }
+        catch (const Exception &)
+        {
+            result = true;
+            exception = true;
+        }
+        catch (...)
+        {
+            exception = true;
+        }
+
+        add_result(result);
+        if (this->_callback)
+        {
+            if (result)
+                this->_callback(UnitTesterOutcome::SUCCESS);
+            else if (exception)
+                this->_callback(UnitTesterOutcome::FAIL_DIFFERENCE);
+            else
+                this->_callback(UnitTesterOutcome::FAIL_NO_THROW);
+        }
+        return get_last_result();
+    }
+
+    template < class Return, class... Args >
+    const bool &IUnitTesterFunction::run_exception_test(input_type args)
+    {
+        bool exception;
+        try
+        {
+            const output_type output = this->operator()(std::forward<Args>(args)...);
+            exception = false;
+        }
+        catch (...)
+        {
+            exception = true;
+        }
+
+        add_result(exception);
+        if (this->_callback)
+        {
+            if (exception)
+                this->_callback(UnitTesterOutcome::SUCCESS);
+            else
+                this->_callback(UnitTesterOutcome::FAIL_NO_THROW);
+        }
+        return get_last_result();
+    }
+
 }
 #undef IUnitTesterFunction

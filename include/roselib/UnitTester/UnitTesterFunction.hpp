@@ -22,7 +22,7 @@ namespace rose
     /// @tparam Return  Function or callable's return type
     /// @tparam Args    Arguments list of the signature
     template < class Return, class... Args >
-    class UnitTesterFunction<Return(Args...)> final:
+    class UnitTesterFunction final:
         public UnitTesterBase
     {
     public:
@@ -50,7 +50,27 @@ namespace rose
         /// @param args     Arguments to pass to the tested function
         ///
         /// @return         TRUE when the test pass, otherwise FALSE
-        bool run_test(output_type expected, input_type args);
+        const bool& run_test(output_type expected, input_type args);
+
+        /// @brief          Checks if the given function throws the expected
+        ///                 exception with the given arguments. Finally updates
+        ///                 the underlaying result structure.
+        ///
+        /// @tparam Exception   Type of the expected exception
+        /// @param args         Arguments to pass to the tested function
+        ///
+        /// @return         TRUE when the test pass, otherwise FALSE
+        template < class Exception >
+        const bool& run_exception_test(input_type args);
+
+        /// @brief          Checks if the given function throws an exeption
+        ///                 with the given arguments. Finally updates the underlaying
+        ///                 result structure.
+        ///
+        /// @param args     Arguments to pass to the tested function
+        ///
+        /// @return         TRUE when the test pass, otherwise FALSE
+        const bool& run_exception_test(input_type args);
 
     private:
         const case_type     _function;
