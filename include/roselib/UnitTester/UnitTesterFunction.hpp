@@ -40,6 +40,21 @@ namespace rose
         explicit UnitTesterFunction(const case_type &function):
             UnitTesterBase(Type::FUNCTION), _function(function) {}
 
+        /// @brief          Creates a copy of the provided function unit tester
+        ///
+        /// @param rhs      Element to copy
+        UnitTesterFunction(const UnitTesterFunction &rhs):
+            UnitTesterBase(rhs), _function(rhs._function) {}
+
+        /// @brief          Constructs a function unit tester, from the provided
+        ///                 base to allow continuity of tests
+        ///
+        /// @param function Function or callable to test
+        /// @param rhs      Unit tester to take reference from
+        UnitTesterFunction(const case_type &function, const UnitTesterBase &rhs):
+            UnitTesterBase(rhs), _function(function)
+        { this->_type = Type::FUNCTION; }
+
         /// @brief          Simply calls the function, using the provided
         ///                 signature and arguments
         ///
@@ -106,11 +121,24 @@ namespace rose
     /// @brief              Helper function to create a new function unit tester
     ///
     /// @tparam Signature   Function or callable's signature
-    /// @param function     Target function or callable to use
+    /// @param function     Target function or callable to test
     ///
     /// @return             Function unit tester ready for usage
     template < class Signature >
-    UnitTesterFunction<Signature> make_tester
-        (const Signature &function)
+    typename std::enable_if<std::is_function<Signature>::value, UnitTesterFunction<Signature>>::type
+        make_tester(const Signature &function)
     { return UnitTesterFunction<Signature>(function); }
+
+    /// @brief              Helper function to create a new function unit tester,
+    ///                     from the results of another tester for continious testing
+    ///
+    /// @tparam Signature   Function or callable's signature
+    /// @param function     Target function or callable to test
+    /// @param tester       Other tester to copy results from
+    ///
+    /// @return             Function unit tester ready for usage
+    template < class Signature >
+    typename std::enable_if<std::is_function<Signature>::value, UnitTesterFunction<Signature>>::type
+        make_tester(const Signature &function, const UnitTesterBase &tester)
+    { return UnitTesterFunction<Signature>(function, tester); }
 }

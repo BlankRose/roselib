@@ -19,7 +19,7 @@
 /// Source:  https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
 
 #define ANSI_ESC                        "\033["
-#define ANSI_RESET_ALL                  "0m"
+#define ANSI_RESET_ALL                  ANSI_ESC"0m"
 #define ANSI_RESET                      ANSI_RESET_ALL
 
 /// STYLES

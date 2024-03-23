@@ -9,6 +9,8 @@
 /*     ||  '-'                                                                */
 /* ************************************************************************** */
 
+#include <iostream>
+
 void assign_test_callback();
 bool test_unit_tester();
 void test_begin_with();
@@ -16,6 +18,10 @@ void test_begin_with();
 int main()
 {
     assign_test_callback();
-    test_unit_tester();
+    if (!test_unit_tester())
+    {
+        std::cerr << "Flawed unit tested detected!" << std::endl;
+        return 1;
+    }
     test_begin_with();
 }

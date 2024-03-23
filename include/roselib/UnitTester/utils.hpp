@@ -14,6 +14,8 @@
 
 namespace rose
 {
+    class UnitTesterBase;
+
     /// @brief      Enumeration of tested features,
     ///             mostly used by @class UnitTester
     enum class UnitTesterType
@@ -54,5 +56,5 @@ namespace rose
         bool        last    = true; // Last test's result (TRUE = Success, FALSE = Failure)
     };
 
-    using UnitTesterCallback = void(*)(const UnitTesterOutcome &);
+    using UnitTesterCallback = void(*)(const UnitTesterOutcome&, const UnitTesterBase&);
 }

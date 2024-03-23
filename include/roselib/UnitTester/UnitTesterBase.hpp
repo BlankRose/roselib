@@ -11,6 +11,7 @@
 
 #pragma once
 #include "utils.hpp"
+#include <iosfwd>
 
 namespace rose
 {
@@ -114,4 +115,7 @@ namespace rose
         callback_type           _callback;
         static callback_type    _default_callback;
     };
+
 }
+
+std::ostream& operator<<(std::ostream &out, const rose::UnitTesterBase &tester);

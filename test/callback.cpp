@@ -11,14 +11,19 @@
 
 #include <iostream>
 #include "roselib/UnitTester.hpp"
+#include "roselib/AnsiSequence.hpp"
 
-void callback(const rose::UnitTesterOutcome &out)
+void callback
+    (const rose::UnitTesterOutcome &result, const rose::UnitTesterBase &tester)
 {
-    switch (out)
+    const size_t count = tester.get_result().total;
+    switch (result)
     {
     case rose::UnitTesterOutcome::SUCCESS:
+        std::cout << ' ' << ANSI_FG_GREEN << count << ". [ OK ]" << ANSI_RESET;
         break;
     default:
+        std::cout << ' ' << ANSI_FG_RED << count << ". [ KO ]" << ANSI_RESET;
         break;
     }
 }

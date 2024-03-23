@@ -41,9 +41,9 @@ namespace rose
             if (callback)
             {
                 if (!exception)
-                    callback(UnitTesterOutcome::SUCCESS);
+                    callback(UnitTesterOutcome::SUCCESS, results);
                 else
-                    callback(UnitTesterOutcome::FAIL_THROW);
+                    callback(UnitTesterOutcome::FAIL_THROW, results);
             }
             return results.get_last_result();
         }
@@ -74,11 +74,11 @@ namespace rose
             if (callback)
             {
                 if (result)
-                    callback(UnitTesterOutcome::SUCCESS);
+                    callback(UnitTesterOutcome::SUCCESS, results);
                 else if (exception)
-                    callback(UnitTesterOutcome::FAIL_THROW);
+                    callback(UnitTesterOutcome::FAIL_THROW, results);
                 else
-                    callback(UnitTesterOutcome::FAIL_DIFFERENCE);
+                    callback(UnitTesterOutcome::FAIL_DIFFERENCE, results);
             }
             return results.get_last_result();
         }
@@ -106,9 +106,9 @@ namespace rose
             if (callback)
             {
                 if (exception)
-                    callback(UnitTesterOutcome::SUCCESS);
+                    callback(UnitTesterOutcome::SUCCESS, results);
                 else
-                    callback(UnitTesterOutcome::FAIL_NO_THROW);
+                    callback(UnitTesterOutcome::FAIL_NO_THROW, results);
             }
             return results.get_last_result();
         }
@@ -142,11 +142,11 @@ namespace rose
             if (callback)
             {
                 if (result)
-                    callback(UnitTesterOutcome::SUCCESS);
+                    callback(UnitTesterOutcome::SUCCESS, results);
                 else if (exception)
-                    callback(UnitTesterOutcome::FAIL_DIFFERENCE);
+                    callback(UnitTesterOutcome::FAIL_DIFFERENCE, results);
                 else
-                    callback(UnitTesterOutcome::FAIL_NO_THROW);
+                    callback(UnitTesterOutcome::FAIL_NO_THROW, results);
             }
             return results.get_last_result();
         }

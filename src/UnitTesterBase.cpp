@@ -9,7 +9,9 @@
 /*     ||  '-'                                                                */
 /* ************************************************************************** */
 
-#include "roselib/UnitTester.hpp"
+#include "roselib/UnitTester/UnitTesterBase.hpp"
+#include <iostream>
+
 using namespace rose;
 
 UnitTesterCallback UnitTesterBase::_default_callback = nullptr;
@@ -99,4 +101,11 @@ void UnitTesterBase::add_result(const bool &result) noexcept
         ++this->_result.fails;
     ++this->_result.total;
     this->_result.last = result;
+}
+
+std::ostream &operator<<(std::ostream &out, const UnitTesterBase &tester)
+{
+    const UnitTesterResult &result = tester.get_result();
+    out << result.success << "/" << result.total;
+    return out;
 }
