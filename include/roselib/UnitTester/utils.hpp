@@ -17,22 +17,24 @@ namespace rose
     class UnitTesterBase;
 
     /// @brief      Enumeration of tested features,
-    ///             mostly used by @class UnitTester
+    ///             mostly used to differenciate each testing unit classes
     enum class UnitTesterType
     {
-        UNKNOWN,                    // Test case is unknown
-        FUNCTION,                   // Test case is callable
-        OBJECT,                     // Test case is an object
+        UNKNOWN,            // Test case is unknown
+        CONDITIONAL,        // Test case is conditional
+        FUNCTION,           // Test case is callable
+        OBJECT,             // Test case is an object
     };
 
     /// @brief      Enumeration of the possible outcomes
     ///             for the tested features
     enum class UnitTesterOutcome
     {
-        SUCCESS,                    // Test passed
-        FAIL_DIFFERENCE,            // Test failed because the returned value(s) were different than expected
-        FAIL_NO_THROW,              // Test failed because no exception was thrown in an exception test
-        FAIL_THROW,                 // Test failed because an exception was thrown in a non-exception test
+        SUCCESS,            // Test passed
+        FAIL_SAME,          // Test failed because the returned value(s) were same than the unexpected(s)
+        FAIL_DIFFERENCE,    // Test failed because the returned value(s) were different than expected(s)
+        FAIL_NO_THROW,      // Test failed because no exception was thrown in an exception test
+        FAIL_THROW,         // Test failed because an exception was thrown in a non-exception test
     };
 
     /// @brief      Structions which keep track of various informations

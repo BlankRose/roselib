@@ -33,11 +33,13 @@ set(LIB_HEADERS
         include/roselib/impl/tester.tpp
         include/roselib/UnitTester/utils.hpp
         include/roselib/UnitTester/UnitTesterBase.hpp
+        include/roselib/UnitTester/UnitTesterConditional.hpp
         include/roselib/UnitTester/UnitTesterFunction.hpp
         include/roselib/UnitTester/UnitTesterObject.hpp
         include/roselib/UnitTester.hpp)
 set(LIB_SOURCES
-        src/UnitTesterBase.cpp)
+        src/UnitTesterBase.cpp
+        src/UnitTesterConditional.cpp)
 set(TEST_SOURCES
         test/main.cpp
         test/callback.cpp

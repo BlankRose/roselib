@@ -20,3 +20,7 @@
 
 /// Defines the callable specialized unit tester
 #include "UnitTester/UnitTesterFunction.hpp"
+
+/// Defines the conditional specialized unit tester
+/// ( Is the simpliest to use )
+#include "UnitTester/UnitTesterConditional.hpp"

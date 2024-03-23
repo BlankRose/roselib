@@ -18,10 +18,10 @@ namespace rose
 {
     namespace _impl
     {
-        template < class Return, class... Args >
+        template < class Result, class... Args >
         const bool &run_test
             (UnitTesterBase &results,
-             const std::function<Return(Args...)> &function,
+             const std::function<Result(Args...)> &function,
              Args... args)
         {
             bool exception;
@@ -49,7 +49,7 @@ namespace rose
         }
 
         template < class Return, class... Args >
-        const bool &run_test
+        const bool &run_expect_test
             (UnitTesterBase &results,
              const std::function<Return(Args...)> &function,
              const Return &expected, Args... args)

@@ -5,7 +5,7 @@
 /*   '-._.(;;;)._.-'                                                          */
 /*   .-'  ,`"`,  '-.                                                          */
 /*  (__.-'/   \'-.__)  By: Rosie (https://github.com/BlankRose)               */
-/*      //\   /        Last Updated: March 23, 2024 [08:43 pm]                */
+/*      //\   /        Last Updated: March 23, 2024 [11:26 pm]                */
 /*     ||  '-'                                                                */
 /* ************************************************************************** */
 
@@ -14,18 +14,14 @@
 #include "roselib/AnsiSequence.hpp"
 
 void callback
-    (const rose::UnitTesterOutcome &result, const rose::UnitTesterBase &tester)
+    (const rose::UnitTesterOutcome&, const rose::UnitTesterBase &tester)
 {
     const size_t count = tester.get_result().total;
-    switch (result)
-    {
-    case rose::UnitTesterOutcome::SUCCESS:
-        std::cout << ' ' << ANSI_FG_GREEN << count << ". [ OK ]" << ANSI_RESET;
-        break;
-    default:
-        std::cout << ' ' << ANSI_FG_RED << count << ". [ KO ]" << ANSI_RESET;
-        break;
-    }
+    const char * prefix = count < 10 ? "0" : "";
+    if (tester.get_last_result())
+        std::cout << " " ANSI_FG_GREEN << prefix << count << "." ANSI_BOLD "OK" ANSI_RESET;
+    else
+        std::cout << " " ANSI_FG_RED << prefix << count << "." ANSI_BOLD "KO" ANSI_RESET;
 }
 
 void assign_test_callback()

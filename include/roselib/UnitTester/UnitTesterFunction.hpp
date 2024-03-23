@@ -10,7 +10,6 @@
 /* ************************************************************************** */
 
 #pragma once
-
 #include "UnitTesterBase.hpp"
 #include "../impl/tester.tpp"
 
@@ -55,6 +54,9 @@ namespace rose
             UnitTesterBase(rhs), _function(function)
         { this->_type = Type::FUNCTION; }
 
+        /// @brief          Destroys the unit tester
+        ~UnitTesterFunction() override = default;
+
         /// @brief          Simply calls the function, using the provided
         ///                 signature and arguments
         ///
@@ -73,7 +75,7 @@ namespace rose
         ///
         /// @return         TRUE when the test pass, otherwise FALSE
         const bool& run_test(Args... args)
-        { return _impl::run_test(*this, this->_function, std::forward<Args>(args)...); }
+        { return _impl::run_test<Return, Args...>(*this, this->_function, std::forward<Args>(args)...); }
 
         /// @brief          Run a new test, by providing the given arguments
         ///                 to tested function, and compare against the given
@@ -81,15 +83,15 @@ namespace rose
         ///                 result structure.
         ///                 @note Return type must not be void
         ///
-        /// @param expected Output expected by the function with given arguments
         /// @param args     Arguments to pass to the tested function
+        /// @param expected Output expected by the function with given arguments
         ///
         /// @return         TRUE when the test pass, otherwise FALSE
         /// @note           Cannot be used if return type is void
         template < class R = Return >
         typename std::enable_if<!std::is_void<R>::value, const bool &>::type
             run_test(Args... args, const return_type &expected)
-        { return _impl::run_test(*this, this->_function, expected, std::forward<Args>(args)...); }
+        { return _impl::run_expect_test<Return, Args...>(*this, this->_function, expected, std::forward<Args>(args)...); }
 
         /// @brief          Checks if the given function throws an exeption
         ///                 with the given arguments. Finally updates the underlaying
@@ -99,20 +101,20 @@ namespace rose
         ///
         /// @return         TRUE when the test pass, otherwise FALSE
         const bool& run_exception_test(Args... args)
-        { return _impl::run_exception_test(*this, this->_function, std::forward<Args>(args)...); }
+        { return _impl::run_exception_test<Return, Args...>(*this, this->_function, std::forward<Args>(args)...); }
 
         /// @brief          Checks if the given function throws the expected
         ///                 exception with the given arguments. Finally updates
         ///                 the underlaying result structure.
         ///
         /// @tparam Exception   Type of the expected exception
-        /// @param expected     Exception expected by the function with given arguments
         /// @param args         Arguments to pass to the tested function
+        /// @param expected     Exception expected by the function with given arguments
         ///
         /// @return         TRUE when the test pass, otherwise FALSE
         template < class Exception >
         const bool& run_exception_test(Args... args, Exception expected)
-        { return _impl::run_exception_test(*this, this->_function, expected, std::forward<Args>(args)...); }
+        { return _impl::run_exception_test<Return, Args...>(*this, this->_function, expected, std::forward<Args>(args)...); }
 
     private:
         const std::function<case_type>    _function;
@@ -139,6 +141,6 @@ namespace rose
     /// @return             Function unit tester ready for usage
     template < class Signature >
     typename std::enable_if<std::is_function<Signature>::value, UnitTesterFunction<Signature>>::type
-        make_tester(const Signature &function, const UnitTesterBase &tester)
+        make_tester(const UnitTesterBase &tester, const Signature &function)
     { return UnitTesterFunction<Signature>(function, tester); }
 }
