@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*         .-.                                                                */
 /*   __   /   \   __                                                          */
-/*  (  `'.\   /.'`  )  main.cpp                                               */
+/*  (  `'.\   /.'`  )  callback.cpp                                           */
 /*   '-._.(;;;)._.-'                                                          */
 /*   .-'  ,`"`,  '-.                                                          */
 /*  (__.-'/   \'-.__)  By: Rosie (https://github.com/BlankRose)               */
-/*      //\   /        Last Updated: March 20, 2024 [06:11 pm]                */
+/*      //\   /        Last Updated: March 23, 2024 [08:43 pm]                */
 /*     ||  '-'                                                                */
 /* ************************************************************************** */
 
-void assign_test_callback();
-bool test_unit_tester();
-void test_begin_with();
+#include <iostream>
+#include "roselib/UnitTester.hpp"
 
-int main()
+void callback(const rose::UnitTesterOutcome &out)
 {
-    assign_test_callback();
-    test_unit_tester();
-    test_begin_with();
+    switch (out)
+    {
+    case rose::UnitTesterOutcome::SUCCESS:
+        break;
+    default:
+        break;
+    }
+}
+
+void assign_test_callback()
+{
+    rose::UnitTesterBase::set_default_callback(callback);
 }

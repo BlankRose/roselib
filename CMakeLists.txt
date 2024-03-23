@@ -5,7 +5,7 @@
 #    '-._.(;;;)._.-'                                                           #
 #    .-'  ,`"`,  '-.                                                           #
 #   (__.-'/   \'-.__)  By: Rosie (https://github.com/BlankRose)                #
-#       //\   /        Last Updated: March 21, 2024 [07:29 pm]                 #
+#       //\   /        Last Updated: March 23, 2024 [08:43 pm]                 #
 #      ||  '-'                                                                 #
 # ############################################################################ #
 
@@ -26,10 +26,11 @@ option(ROSELIB_BUILD_TEST "Should the test executable be built?" ON)
 # ########################## #
 
 set(LIB_HEADERS
+        include/roselib/AnsiSequence.hpp
         include/roselib/impl/predicates.tpp
         include/roselib/Predicates/begin_with.hpp
         include/roselib/Predicates.hpp
-        include/roselib/impl/UnitTesterFunction.tpp
+        include/roselib/impl/tester.tpp
         include/roselib/UnitTester/utils.hpp
         include/roselib/UnitTester/UnitTesterBase.hpp
         include/roselib/UnitTester/UnitTesterFunction.hpp
@@ -39,6 +40,8 @@ set(LIB_SOURCES
         src/UnitTesterBase.cpp)
 set(TEST_SOURCES
         test/main.cpp
+        test/callback.cpp
+        test/unit_tester.cpp
         test/begin_with.cpp)
 
 # ########################## #

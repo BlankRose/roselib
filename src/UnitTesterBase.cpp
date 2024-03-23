@@ -12,6 +12,8 @@
 #include "roselib/UnitTester.hpp"
 using namespace rose;
 
+UnitTesterCallback UnitTesterBase::_default_callback = nullptr;
+
 UnitTesterBase::UnitTesterBase(const Type &type, const bool &last) noexcept:
     _result(0, 0, last), _type(type), _callback(nullptr)
 {}
@@ -48,12 +50,24 @@ const UnitTesterBase::Type &UnitTesterBase::get_type() const noexcept
 
 const UnitTesterBase::callback_type &UnitTesterBase::get_callback() const noexcept
 {
-    return this->_callback;
+    if (this->_callback)
+        return this->_callback;
+    return _default_callback;
+}
+
+const UnitTesterBase::callback_type &UnitTesterBase::get_default_callback() noexcept
+{
+    return _default_callback;
 }
 
 void UnitTesterBase::set_callback(const callback_type &callback) noexcept
 {
     this->_callback = callback;
+}
+
+void UnitTesterBase::set_default_callback(const callback_type &callback) noexcept
+{
+    _default_callback = callback;
 }
 
 void UnitTesterBase::clear_result() noexcept

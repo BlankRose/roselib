@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*         .-.                                                                */
 /*   __   /   \   __                                                          */
-/*  (  `'.\   /.'`  )  main.cpp                                               */
+/*  (  `'.\   /.'`  )  unit_tester.cpp                                        */
 /*   '-._.(;;;)._.-'                                                          */
 /*   .-'  ,`"`,  '-.                                                          */
 /*  (__.-'/   \'-.__)  By: Rosie (https://github.com/BlankRose)               */
-/*      //\   /        Last Updated: March 20, 2024 [06:11 pm]                */
+/*      //\   /        Last Updated: March 23, 2024 [05:11 pm]                */
 /*     ||  '-'                                                                */
 /* ************************************************************************** */
 
-void assign_test_callback();
-bool test_unit_tester();
-void test_begin_with();
+#include <algorithm>
 
-int main()
+#include "roselib/UnitTester.hpp"
+#include <vector>
+
+using storage = std::vector<int>;
+
+bool test_unit_tester()
 {
-    assign_test_callback();
-    test_unit_tester();
-    test_begin_with();
+    storage i{0, 3, 2};
+
+    auto test = rose::make_tester(std::distance<storage::const_iterator>);
+    test.run_test(i.cbegin(), i.cend(), i.size());
+
+    auto test2 = rose::make_tester(std::sort<storage::iterator>);
+    test2.run_test(i.begin(), i.end());
+
+    return true;
 }

@@ -5,7 +5,7 @@
 /*   '-._.(;;;)._.-'                                                          */
 /*   .-'  ,`"`,  '-.                                                          */
 /*  (__.-'/   \'-.__)  By: Rosie (https://github.com/BlankRose)               */
-/*      //\   /        Last Updated: March 21, 2024 [07:32 pm]                */
+/*      //\   /        Last Updated: March 23, 2024 [08:41 pm]                */
 /*     ||  '-'                                                                */
 /* ************************************************************************** */
 
@@ -78,11 +78,23 @@ namespace rose
         /// @return         Pointer to callback function (@class UnitTesterCallback)
         [[nodiscard]] const callback_type& get_callback() const noexcept;
 
+        /// @brief          Retrieves the default callback, called whenever
+        ///                 a test is performed and a callback wasn't defined
+        ///
+        /// @return         Pointer to callback function (@class UnitTesterCallback)
+        [[nodiscard]] static const callback_type& get_default_callback() noexcept;
+
         /// @brief          Define the callback function, called whenever
         ///                 a test is performed
         ///
         /// @param callback Pointer to callback function (@class UnitTesterCallback)
         void set_callback(const callback_type &callback) noexcept;
+
+        /// @brief          Define the default callback function, called whenever
+        ///                 a test is performed and a callback wasn't defined
+        ///
+        /// @param callback Pointer to callback function (@class UnitTesterCallback)
+        static void set_default_callback(const callback_type &callback) noexcept;
 
         /// @brief          Manually adds fails to the counter
         /// @param count    Amount of fails
@@ -97,8 +109,9 @@ namespace rose
         void add_result(const bool &result) noexcept;
 
     protected:
-        result_type         _result;
-        Type                _type;
-        callback_type       _callback;
+        result_type             _result;
+        Type                    _type;
+        callback_type           _callback;
+        static callback_type    _default_callback;
     };
 }
