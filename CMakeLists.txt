@@ -9,7 +9,7 @@
 #      ||  '-'                                                                 #
 # ############################################################################ #
 
-cmake_minimum_required(VERSION 3.28)
+cmake_minimum_required(VERSION 3.0)
 
 project(roselib
     LANGUAGES CXX
@@ -37,10 +37,12 @@ set(LIB_HEADERS
         include/roselib/UnitTester/UnitTesterConditional.hpp
         include/roselib/UnitTester/UnitTesterFunction.hpp
         include/roselib/UnitTester/UnitTesterObject.hpp
-        include/roselib/UnitTester.hpp)
+        include/roselib/UnitTester.hpp
+        include/roselib/Logger.hpp)
 set(LIB_SOURCES
         src/UnitTesterBase.cpp
-        src/UnitTesterConditional.cpp)
+        src/UnitTesterConditional.cpp
+        src/Logger.cpp)
 set(TEST_SOURCES
         test/main.cpp
         test/callback.cpp

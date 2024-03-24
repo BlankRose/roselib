@@ -12,6 +12,7 @@
 #pragma once
 
 #include <string>
+#include <cstring>
 #include <iterator>
 #include "../impl/predicates.tpp"
 

@@ -12,3 +12,4 @@
 #pragma once
 
 #include "Predicates/begin_with.hpp"
+#include "Predicates/end_with.hpp"
