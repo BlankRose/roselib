@@ -14,6 +14,7 @@
 void assign_test_callback();
 bool test_unit_tester();
 void test_begin_with();
+void test_end_with();
 
 int main()
 {
@@ -24,4 +25,5 @@ int main()
         return 1;
     }
     test_begin_with();
+    test_end_with();
 }

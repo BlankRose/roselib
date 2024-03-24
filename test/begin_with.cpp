@@ -74,8 +74,8 @@ void test_begin_with()
         /* 17 */ testA.run_test(base, cmpB, false);
         /* 18 */ testA.run_test(base, {}, true);
         auto testB = rose::make_tester<bool(const std::vector<int>&, const int&)>(testA, rose::begin_with);
-        /* 19 */ testB.run_test(base, 0);
-        /* 20 */ testB.run_test(base, 1);
+        /* 19 */ testB.run_test(base, 0, true);
+        /* 20 */ testB.run_test(base, 1, false);
         std::cout << std::endl;
         store = testB;
     }

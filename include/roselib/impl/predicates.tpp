@@ -10,6 +10,7 @@
 /* ************************************************************************** */
 
 #pragma once
+#include <cstring>
 
 namespace rose
 {
@@ -33,11 +34,15 @@ namespace rose
             (const Iter &base_begin, const Iter &base_end,
              const Iter &cmp_begin, const Iter &cmp_end)
         {
-            size_t i = 0;
-            while (base_begin + i != base_end && cmp_begin + i != cmp_end
-                && *(base_begin + i) == *(cmp_begin + i))
-                i++;
-            if (cmp_begin + i != cmp_end)
+            Iter it_base = base_begin;
+            Iter it_cmp = cmp_begin;
+            while (it_base != base_end && it_cmp != cmp_end
+                && *it_base == *it_cmp)
+            {
+                ++it_base;
+                ++it_cmp;
+            }
+            if (it_cmp != cmp_end)
                 return false;
             return true;
         }
@@ -52,6 +57,28 @@ namespace rose
             if (compare[i] != '\0')
                 return false;
             return true;
+        }
+
+        template < class Array >
+        bool end_with
+            (const Array *base, const size_t &size_base,
+             const Array *compare, const size_t &size_compare)
+        {
+            size_t i = 1;
+            while (size_base - i > 0 && size_compare - 1 > 0
+                && base[size_base - i] == compare[size_compare - i])
+                ++i;
+            if (size_compare - i != 0
+                || base[size_base - i] != compare[size_compare - i])
+                return false;
+            return true;
+        }
+
+        template < class Char >
+        bool end_with
+            (const Char *base, const Char *compare)
+        {
+            return end_with(base, strlen(base), compare, strlen(compare));
         }
     }
 }

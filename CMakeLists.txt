@@ -29,6 +29,7 @@ set(LIB_HEADERS
         include/roselib/AnsiSequence.hpp
         include/roselib/impl/predicates.tpp
         include/roselib/Predicates/begin_with.hpp
+        include/roselib/Predicates/end_with.hpp
         include/roselib/Predicates.hpp
         include/roselib/impl/tester.tpp
         include/roselib/UnitTester/utils.hpp
@@ -44,7 +45,8 @@ set(TEST_SOURCES
         test/main.cpp
         test/callback.cpp
         test/unit_tester.cpp
-        test/begin_with.cpp)
+        test/begin_with.cpp
+        test/end_with.cpp)
 
 # ########################## #
 #        COMPILATION         #
