@@ -110,7 +110,7 @@ namespace rose
     bool end_with
         (const std::basic_string<Char, Traits, Alloc> &base,
          const std::basic_string<Char, Traits, Alloc> &compare)
-    { return _impl::begin_with(base.crbegin(), base.crbegin(), compare.crbegin(), compare.crend()); }
+    { return _impl::begin_with(base.crbegin(), base.crend(), compare.crbegin(), compare.crend()); }
 
     /// @brief                  Checks if the given BASE string ends with the
     ///                         same characters as the one provided in the COMPARE's
@@ -126,7 +126,7 @@ namespace rose
     template < class Char, class Traits, class Alloc >
     bool end_with
         (const std::basic_string<Char, Traits, Alloc> &base, const Char *compare)
-    { return end_with(base, std::basic_string<Char, Traits, Alloc>(compare)); }
+    { return _impl::end_with(base.c_str(), base.size(), compare, strlen(compare)); }
 
     /// @brief                  Checks if the given BASE string ends with the
     ///                         same characters as the one provided in the COMPARE's
@@ -142,7 +142,7 @@ namespace rose
     template < class Char, class Traits, class Alloc >
     bool end_with
         (const Char *base, const std::basic_string<Char, Traits, Alloc> &compare)
-    { return end_with(std::basic_string<Char, Traits, Alloc>(base), compare); }
+    { return _impl::end_with(base, strlen(base), compare.c_str(), compare.size()); }
 
     /// @brief                  Checks if the given BASE string ends with the
     ///                         same characters as the one provided in the COMPARE's
@@ -154,5 +154,5 @@ namespace rose
     /// @return                 TRUE if condition is fulfilled, otherwise FALSE
     inline bool end_with
         (const char *base, const char *compare)
-    { return _impl::end_with<char>(base, compare); }
+    { return _impl::end_with(base, strlen(base), compare, strlen(compare)); }
 }

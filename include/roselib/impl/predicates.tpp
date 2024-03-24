@@ -64,21 +64,16 @@ namespace rose
             (const Array *base, const size_t &size_base,
              const Array *compare, const size_t &size_compare)
         {
+            if (!size_compare)
+                return true;
+            if (!size_base)
+                return false;
             size_t i = 1;
-            while (size_base - i > 0 && size_compare - 1 > 0
+            while (size_base - i > 0 && size_compare - i > 0
                 && base[size_base - i] == compare[size_compare - i])
                 ++i;
-            if (size_compare - i != 0
-                || base[size_base - i] != compare[size_compare - i])
-                return false;
-            return true;
-        }
-
-        template < class Char >
-        bool end_with
-            (const Char *base, const Char *compare)
-        {
-            return end_with(base, strlen(base), compare, strlen(compare));
+            return size_compare - i == 0
+                && base[size_base - i] == compare[size_compare - i];
         }
     }
 }
