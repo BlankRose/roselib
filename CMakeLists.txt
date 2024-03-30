@@ -55,7 +55,7 @@ set(TEST_SOURCES
 # ########################## #
 
 add_library(${PROJECT_NAME} STATIC ${LIB_SOURCES} ${LIB_HEADERS})
-target_include_directories(${PROJECT_NAME} PRIVATE include)
+target_include_directories(${PROJECT_NAME} PUBLIC include)
 if (${ROSELIB_BUILD_TEST})
     add_executable(${PROJECT_NAME}_test ${TEST_SOURCES})
     target_link_libraries(${PROJECT_NAME}_test ${PROJECT_NAME})
