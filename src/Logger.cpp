@@ -17,8 +17,8 @@ using namespace rose;
 
 #define DEFAULT_TIME_FORMAT "[ %d-%m-%y %I:%M:%S %p ]"
 
-Logger              logs;
-constexpr LoggerEnd logs_send;
+Logger              rose::logs;
+constexpr LoggerEnd rose::logs_send;
 
 Logger::Logger():
     _stream(&std::cout), _time_format(DEFAULT_TIME_FORMAT),
