@@ -9,11 +9,10 @@
 #      ||  '-'                                                                 #
 # ############################################################################ #
 
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.20)
 
 project(roselib
     LANGUAGES CXX
-    VERSION 0.1
     DESCRIPTION "Simple lightweight library, mostly intended for personal projects"
     HOMEPAGE_URL https://github.com/BlankRose/roselib)
 set(CMAKE_CXX_STANDARD 11)
