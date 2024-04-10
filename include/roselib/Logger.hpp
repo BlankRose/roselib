@@ -268,7 +268,15 @@ namespace rose
         ///                 defined log level
         ///
         /// @return         String containing the level, ready to print
-        [[nodiscard]] const char *get_level_string() const;
+        [[nodiscard]] const char *get_level_string() const
+        { return get_level_string(this->_level); }
+
+        /// @brief          Retrieves the string associated to the
+        ///                 requested log level
+        ///
+        /// @param level    Requested log level
+        /// @return         String containing the level, ready to print
+        [[nodiscard]] static const char *get_level_string(const LoggerLevel& level);
 
     private:
         std::mutex          _lock;

@@ -38,7 +38,8 @@ set(LIB_HEADERS
         include/roselib/UnitTester/UnitTesterFunction.hpp
         include/roselib/UnitTester/UnitTesterObject.hpp
         include/roselib/UnitTester.hpp
-        include/roselib/Logger.hpp)
+        include/roselib/Logger.hpp
+        include/roselib.hpp)
 set(LIB_SOURCES
         src/UnitTesterBase.cpp
         src/UnitTesterConditional.cpp
@@ -48,7 +49,8 @@ set(TEST_SOURCES
         test/callback.cpp
         test/unit_tester.cpp
         test/begin_with.cpp
-        test/end_with.cpp)
+        test/end_with.cpp
+        test/logger.cpp)
 
 # ########################## #
 #        COMPILATION         #

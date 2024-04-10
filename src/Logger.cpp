@@ -82,18 +82,7 @@ Logger& Logger::operator=(Logger &&other) noexcept
 
 Logger& Logger::operator<<(const LoggerEnd&)
 {
-    if (this->_level >= this->_min_level && this->_enabled)
-    {
-        this->_lock.lock();
-        std::string log =
-              get_time() + " "
-            + get_level_string() + " ";
-        if (!this->_prefix.empty())
-            log += this->_prefix + " ";
-        log += this->_buffer.str();
-        get_stream() << log << std::endl;
-        this->_lock.unlock();
-    }
+    log(this->_level, this->_buffer.str());
     clear();
     return *this;
 }
@@ -221,7 +210,13 @@ void Logger::log(const LoggerLevel& level, const std::string& what) const
 {
     if (level >= this->_min_level && this->_enabled)
     {
-        get_stream() << what << std::endl;
+        std::string log =
+            get_time() + " "
+            + get_level_string(level) + " ";
+        if (!this->_prefix.empty())
+            log += this->_prefix + " ";
+        log += what;
+        get_stream() << log << std::endl;
     }
 }
 
@@ -264,9 +259,9 @@ std::string Logger::get_time() const
     return time_buffer;
 }
 
-const char* Logger::get_level_string() const
+const char* Logger::get_level_string(const LoggerLevel& level)
 {
-    switch (this->_level)
+    switch (level)
     {
     case LoggerLevel::DEBUG:
         return "[ DEBUG ]";

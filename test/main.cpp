@@ -15,6 +15,7 @@ void assign_test_callback();
 bool test_unit_tester();
 void test_begin_with();
 void test_end_with();
+void test_logger();
 
 int main()
 {
@@ -26,4 +27,5 @@ int main()
     }
     test_begin_with();
     test_end_with();
+    test_logger();
 }
