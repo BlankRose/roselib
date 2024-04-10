@@ -225,31 +225,26 @@ void Logger::log(const LoggerLevel& level, const std::string& what) const
     }
 }
 
-inline
 void Logger::debug(const std::string& what) const
 {
     log(LoggerLevel::DEBUG, what);
 }
 
-inline
 void Logger::info(const std::string& what) const
 {
     log(LoggerLevel::INFO, what);
 }
 
-inline
 void Logger::warn(const std::string& what) const
 {
     log(LoggerLevel::WARNING, what);
 }
 
-inline
 void Logger::error(const std::string& what) const
 {
     log(LoggerLevel::ERROR, what);
 }
 
-inline
 void Logger::fatal(const std::string& what) const
 {
     log(LoggerLevel::FATAL, what);

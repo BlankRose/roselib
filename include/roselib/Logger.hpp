@@ -231,31 +231,31 @@ namespace rose
         ///                 (does not use or modify the current buffer)
         ///
         /// @param what     What to write down on the log
-        inline void debug(const std::string &what) const;
+        void debug(const std::string &what) const;
 
         /// @brief          Quickly sends an info message through the logger
         ///                 (does not use or modify the current buffer)
         ///
         /// @param what     What to write down on the log
-        inline void info(const std::string &what) const;
+        void info(const std::string &what) const;
 
         /// @brief          Quickly sends a warning message through the logger
         ///                 (does not use or modify the current buffer)
         ///
         /// @param what     What to write down on the log
-        inline void warn(const std::string &what) const;
+        void warn(const std::string &what) const;
 
         /// @brief          Quickly sends an error message through the logger
         ///                 (does not use or modify the current buffer)
         ///
         /// @param what     What to write down on the log
-        inline void error(const std::string &what) const;
+        void error(const std::string &what) const;
 
         /// @brief          Quickly sends a fatal message through the logger
         ///                 (does not use or modify the current buffer)
         ///
         /// @param what     What to write down on the log
-        inline void fatal(const std::string &what) const;
+        void fatal(const std::string &what) const;
 
     protected:
         /// @brief          Constructs the time string, from the defined time

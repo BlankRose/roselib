@@ -16,6 +16,7 @@ project(roselib
     DESCRIPTION "Simple lightweight library, mostly intended for personal projects"
     HOMEPAGE_URL https://github.com/BlankRose/roselib)
 set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
 option(ROSELIB_BUILD_TEST "Should the test executable be built?" ON)

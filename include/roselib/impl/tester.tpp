@@ -21,7 +21,7 @@ namespace rose
         template < class Result, class... Args >
         const bool &run_test
             (UnitTesterBase &results,
-             const std::function<Result(Args...)> &function,
+             std::function<Result(Args...)> function,
              Args... args)
         {
             bool exception;
@@ -51,7 +51,7 @@ namespace rose
         template < class Return, class... Args >
         const bool &run_expect_test
             (UnitTesterBase &results,
-             const std::function<Return(Args...)> &function,
+             std::function<Return(Args...)> function,
              const Return &expected, Args... args)
         {
             bool result;
@@ -86,7 +86,7 @@ namespace rose
         template < class Return, class... Args >
         const bool &run_exception_test
             (UnitTesterBase &results,
-             const std::function<Return(Args...)> &function,
+             std::function<Return(Args...)> function,
              Args... args)
         {
             bool exception;
@@ -116,7 +116,7 @@ namespace rose
         template < class Return, class... Args, class Exception >
         const bool &run_exception_test
             (UnitTesterBase &results,
-             const std::function<Return(Args...)> &function,
+             std::function<Return(Args...)> function,
              const Exception&, Args... args)
         {
             bool result = false;

@@ -36,7 +36,7 @@ namespace rose
         using return_type = typename std::conditional<std::is_void<Return>::value, bool, Return>::type;
 
         /// @brief          Constructs a function unit tester
-        explicit UnitTesterFunction(const case_type &function):
+        explicit UnitTesterFunction(case_type function):
             UnitTesterBase(Type::FUNCTION), _function(function) {}
 
         /// @brief          Creates a copy of the provided function unit tester
@@ -50,7 +50,7 @@ namespace rose
         ///
         /// @param function Function or callable to test
         /// @param rhs      Unit tester to take reference from
-        UnitTesterFunction(const case_type &function, const UnitTesterBase &rhs):
+        UnitTesterFunction(case_type function, const UnitTesterBase &rhs):
             UnitTesterBase(rhs), _function(function)
         { this->_type = Type::FUNCTION; }
 
